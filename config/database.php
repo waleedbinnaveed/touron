@@ -63,16 +63,14 @@ return [
 
 
                 'pgsql' => [
-                  'driver'    => 'pgsql',
-                  'host'      =>  $host,
-                  'database'  => $database,
-                  'username'  => $username,
-                  'password'  => $password,
-                  'charset'   => 'utf8',
-                  'collation' => 'utf8_unicode_ci',
-                  'prefix'    => '',
-        //            'strict'    => false,
-        //            '
+                    'driver'   => 'pgsql',
+                    'host'     => $host,
+                    'database' => $database,
+                    'username' => $username,
+                    'password' => $password,
+                    'charset'  => 'utf8',
+                    'prefix'   => '',
+                    'schema'   => 'public',
                 ],
         'sqlsrv' => [
             'driver' => 'sqlsrv',
