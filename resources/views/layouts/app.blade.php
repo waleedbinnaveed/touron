@@ -26,6 +26,23 @@
 
     <link href="{{ asset('site-content/css/agency.min.css') }}" rel="stylesheet">
 
+<style>
+    #myProgress {
+      width: 100%;
+      background-color: #ddd;
+      text-align: left;
+    }
+    #myBar {
+      width: 0%;
+      height: 30px;
+      background-color: #4CAF50;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 </head>
@@ -39,7 +56,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
         <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top">
-          <img class="" src="img/logo2.png" width="100" height="100" alt="">          
+          <img class="" src="img/logo2.png" width="100" height="100" alt="">
         </a> -->
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
@@ -47,7 +64,7 @@
         </button>
         <div class="collapse navbar-collapse"  id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-           
+
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
             </li>
@@ -60,10 +77,14 @@
               <a class="nav-link" href="{{ route('register') }}">Register</a>
             </li>
 
-            @else 
+            @else
+            <li class="nav-item">
+              <a class="btn btn-xl" href="{{ route('upload') }}">+</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="">{{ Auth::user()->name }}</a>
-            </li> 
+            </li>
+
 
             <li class="nav-item">
             <a class="nav-link"href="{{ route('logout') }}"
@@ -150,9 +171,3 @@
 
 
 </html>
-
-
-
-
-
-

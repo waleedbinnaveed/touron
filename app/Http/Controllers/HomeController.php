@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Media;
+use App\comments;
+
 
 class HomeController extends Controller
 {
@@ -13,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +26,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $media = Media::all(); 
+        return view('welcome')->with('media',$media);
+    }
+
+    public function storeComment()
+    { 
+        $media = Media::all();         
+        $newcom = new comments
+        (
+          array(
+            'mediaid' =>  $_POST['mediaid'],
+             'nameofuser' => $_POST['nameofuser'],
+             'userid' => 0,
+             'comment' => $_POST['comment'],
+    
+           )
+    
+        );
+    
+        $newcom->save();
+        return view('welcome')->with('status', 'comment posted')->with('media',$media);
     }
 }

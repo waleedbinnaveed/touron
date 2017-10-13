@@ -17,103 +17,243 @@
 
 
 
-
-
-<!-- Portfolio Grid -->
-<section class="bg-light" id="portfolio">
+ <!-- Portfolio Grid -->
+    <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Portfolio</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
         <div class="row">
+            
+@foreach($media as $x)
+
+          @if ($x->mediaType == '4')
           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <a class="portfolio-link" data-toggle="modal" href="#{!! $x->id !!}">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
                   <i class="fa fa-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
+<!--              <video class="img-fluid" src="{!! $x->mediaURL !!}" alt=""/>-->
+                <video class="img-fluid d-block mx-auto" width="320" height="240" >
+                    <source src="{!! $x->mediaURL !!}" >
+                   </video>
             </a>
             <div class="portfolio-caption">
-              <h4>Threads</h4>
-              <p class="text-muted">Illustration</p>
+              <h3 style="color:gold;">Video</h3>
+              <h4>{!! $x->userName !!}</h4>
+              <p class="text-muted">{!! $x->destination !!}</p>
             </div>
           </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
+            @endif
+
+            @if ($x->mediaType == 'g')
+
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                <a class="portfolio-link" data-toggle="modal" href="#{!! $x->id !!}">
+                  <div class="portfolio-hover">
+                    <div class="portfolio-hover-content">
+                      <i class="fa fa-plus fa-3x"></i>
+                    </div>
+                  </div>
+                  <img class="img-fluid" src="{!! $x->mediaURL !!}" alt="">
+                </a>
+                <div class="portfolio-caption">
+               <h3 style="color:gold;">Image</h3>
+              <h4>{!! $x->userName !!}</h4>
+              <p class="text-muted">{!! $x->destination !!}</p>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Explore</h4>
-              <p class="text-muted">Graphic Design</p>
+            @endif
+            
+@endforeach
+            
+            
+        </div>
+      </div>
+</section>
+
+
+
+    <!-- Portfolio Modals -->
+
+@foreach($media as $y)
+
+          @if ($y->mediaType == '4')
+
+    <div class="portfolio-modal modal fade" id="{!! $y->id !!}" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
             </div>
           </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <!-- Project Details Go Here -->
+                  <h2>{!! $y->destination !!}</h2>
+                    
+                   <video class="img-fluid d-block mx-auto" controls>
+                    <source src="{!! $y->mediaURL !!}" >
+                   </video>
+                    
+                  <ul class="list-inline">
+                    <li>Date: {!! $y->created_at !!}</li>
+                    <li>Destination: {!! $y->destination !!}</li>
+                    <li>uploaded by : {!! $y->userName !!}</li>
+                  </ul>
+
+                  <form class="form-horizontal" method="post" id="formid">
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger">{{ $error }}</p>
+                    @endforeach
+
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <fieldset>
+                        <legend>Upload</legend>
+                        <div class="form-group">
+                          <label for="title" class="col-lg-2 control-label">Comment</label>
+                          <div class="col-lg-10">
+                              <textarea type="text" class="form-control" id="comment" name="comment">Comment Here!
+                              </textarea> 
+                          </div>
+                        </div>
+
+  
+
+                        <div class="form-group">
+                        <label for="title" class="col-lg-2 control-label">Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="nameofuser" name="nameofuser"  >
+                            </div>
+                        </div>
+
+                        <input type="text" value="{{ $y->id }}" id="mediaid" name="mediaid" hidden  >
+
+                       
+
+
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="submit" id="update" class="btn btn-xl" >Comment</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+       
+                  
+                  </form> 
+
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Finish</h4>
-              <p class="text-muted">Identity</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Lines</h4>
-              <p class="text-muted">Branding</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Southwest</h4>
-              <p class="text-muted">Website Design</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Window</h4>
-              <p class="text-muted">Photography</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+
+@endif
+          @if ($y->mediaType == 'g')
+
+
+    <div class="portfolio-modal modal fade" id="{!! $y->id !!}" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <!-- Project Details Go Here -->
+                  <h2>{!! $y->destination !!}</h2>
+                  <img class="img-fluid d-block mx-auto" src="{!! $y->mediaURL !!}" alt="">
+                  <ul class="list-inline">
+                    <li>Date: {!! $y->created_at !!}</li>
+                    <li>Destination: {!! $y->destination !!}</li>
+                    <li>uploaded by : {!! $y->userName !!}</li>
+                  </ul>
+
+
+                  <form class="form-horizontal" method="post" id="formid">
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger">{{ $error }}</p>
+                    @endforeach
+
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <fieldset>
+                        <legend>Upload</legend>
+                        <div class="form-group">
+                          <label for="title" class="col-lg-2 control-label">Comment</label>
+                          <div class="col-lg-10">
+                              <textarea type="text" class="form-control" id="comment" name="comment">Comment Here!
+                              </textarea> 
+                          </div>
+                        </div>
+
+  
+
+                        <div class="form-group">
+                        <label for="title" class="col-lg-2 control-label">Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="nameofuser" name="nameofuser"  >
+                            </div>
+                        </div>
+
+                        <input type="text" value="{{ $y->id }}" id="mediaid" name="mediaid" hidden  >
+
+                       
+
+
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="submit" id="update" class="btn btn-xl" >Comment</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+       
+                  
+                  </form> 
+
+
+
+                  <!-- <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    <i class="fa fa-times"></i>
+                    Close Project</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        @endif
+@endforeach
+
+
+
 @endsection
