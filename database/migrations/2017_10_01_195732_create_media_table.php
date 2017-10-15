@@ -18,8 +18,11 @@ class CreateMediaTable extends Migration
             $table->integer('userid')->nullable() ;
             $table->string('userName')->nullable() ;
             $table->string('destination')->nullable() ;
+            $table->string('location')->nullable() ;
             $table->string('mediaURL')->nullable();
             $table->char('mediaType',1);//video or picture
+            $table->string('showName');//true if user want to show it 
+
             $table->timestamps();
         });
     }

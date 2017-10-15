@@ -27,12 +27,14 @@ class HomeController extends Controller
     public function index()
     {
         $media = Media::all(); 
-        return view('welcome')->with('media',$media);
+        $comments = comments::all(); 
+        return view('welcome')->with('media',$media)->with('comments',$comments);
     }
 
     public function storeComment()
     { 
-        $media = Media::all();         
+        $media = Media::all();  
+        $comments = comments::all();        
         $newcom = new comments
         (
           array(
@@ -46,6 +48,6 @@ class HomeController extends Controller
         );
     
         $newcom->save();
-        return view('welcome')->with('status', 'comment posted')->with('media',$media);
+        return view('welcome')->with('status', 'comment posted')->with('media',$media)->with('comments',$comments);
     }
 }

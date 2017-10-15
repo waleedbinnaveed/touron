@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\Media;
+use App\comments;
+use App\User; 
+
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
+    
+     public function __construct()
+    {
+         $this->middleware('auth');
+    }
   public function index()
   {
       return view('upload');
@@ -20,8 +28,10 @@ class MediaController extends Controller
         'userid' =>  Auth::User()->id,
          'userName' => Auth::User()->name,
          'destination' => $_POST['destination'],
+         'location' => $_POST['location'],
          'mediaURL' => $_POST['mediaurl'],
          'mediaType' => $_POST['type'],
+         'showName' => $_POST['showname'],
 
        )
 
@@ -31,4 +41,66 @@ class MediaController extends Controller
     return redirect('/upload')->with('status', 'Your media has been uploaded!');
 
   }
+    
+    
+public function adminPanel() { 
+    $users = User::all(); 
+    $email=Auth::User()->email; 
+        $media = Media::all(); 
+        $comments = comments::all(); 
+        return view('admin')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+}
+    
+    public function deleteUser($email)
+    {
+        
+        $user = User::whereEmail($email)->first() ; 
+
+        $user->delete(); 
+        
+
+        
+        $users = User::all(); 
+        $email=Auth::User()->email; 
+        $media = Media::all(); 
+        $comments = comments::all();
+        return view('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+
+
+    }
+    
+       public function deleteMedia($mediaid)
+    {
+        
+        $mediaa = Media::whereId($mediaid)->first() ; 
+        $commentss = comments::whereMediaid($mediaid); 
+        $mediaa->delete(); 
+        $commentss->delete(); 
+
+        
+        $users = User::all(); 
+        $email=Auth::User()->email; 
+        $media = Media::all(); 
+        $comments = comments::all();
+        return view('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+
+
+    }
+    
+           public function deleteComment($commentid)
+    {
+        
+        $commentss = comments::whereId($commentid)->first() ; 
+        $commentss->delete(); 
+
+        
+        $users = User::all(); 
+        $email=Auth::User()->email; 
+        $media = Media::all(); 
+        $comments = comments::all();
+        return view('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+
+
+    }
+    
 }

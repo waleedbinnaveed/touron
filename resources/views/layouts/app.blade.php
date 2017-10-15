@@ -66,7 +66,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+              <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}">Portfolio</a>
             </li>
             @guest
             <li class="nav-item">

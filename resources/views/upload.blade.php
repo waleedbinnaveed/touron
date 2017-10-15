@@ -30,11 +30,10 @@
         <div class="intro-text">
           <!-- <div class="intro-lead-in">Inspired from travelling Enthusisats</div>
           <img class="" src="site-content/img/logo2.png" width="400" height="400" alt=""> -->
-          <!-- <div class="intro-heading">WELCOME</div> -->
           <!-- <a class="btn btn-xl js-scroll-trigger" href="#services">Tell Me More</a> -->
 
-<div class="container">
-  <div class="row">
+            <div class="col-md-8 col-md-offset-2"> 
+                      
         <div class="well well bs-component">
           <form class="form-horizontal" method="post" id="formid">
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -51,37 +50,53 @@
 
 
                     <fieldset>
-                        <legend>Upload</legend>
+           <div class="intro-heading">Upload Media</div> 
                         <div class="form-group">
-                          <label for="title" class="col-lg-2 control-label">Enter Destination</label>
-                          <div class="col-lg-10">
-                              <input type="text" class="form-control" id="destination" name="destination">
+                          <div class="col-lg-10 col-lg-offset-1">
+                              <input type="text" class="form-control" id="destination" name="destination" placeholder="Enter Your Destination">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-lg-10 col-lg-offset-1">
+                              <input type="text" class="form-control" id="location" name="location" placeholder="Enter Your location">
                           </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-lg-10">
+                       
                                 <input type="text" class="form-control" id="mediaurl" name="mediaurl" hidden/ >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-10">
+                         
                                 <input type="text" class="form-control" id="type" name="type" hidden/ >
-                            </div>
-                        </div>
+                        
 
+
+
+                        <div class="formgroup">
+                        <div class="col-lg-10 col-lg-offset-1">
+
+                        <label class="radio-inline"><input type="radio" value="true" id="showname" name="showname" checked>Show my Name</label>
+                        <label class="radio-inline"><input type="radio" value="false" id="showname" name="showname">Don't Show my name</label>                       
+                            </div> 
+                            </div>                        
+                            
 
                         <div class="form-group">
-                            <div class="col-lg-10 col-lg-offset-2">
-                                <button type="submit" id="update" class="btn btn-primary" hidden>Save</button>
+                            <div class="col-lg-10 col-lg-offset-1">
+<br>
+<br>
+                                
+                                <button type="submit" id="update" class="btn btn-xl" hidden>Save</button>
                             </div>
                         </div>
 
                     </fieldset>
           </form>
+                <hr> 
+
                 <div class="main">
 
-    <input type="file" class="btn btn-xl" id="upload_file" size="50" name="icon" onchange="loadFile(this);" >
+    <input type="file" class="" id="upload_file" size="50" name="icon" onchange="loadFile(this);" >
+                    
+                    <br>
     <div id="myProgress">
         <div id="myBar"></div>
     </div>
@@ -92,13 +107,25 @@
         </div>
       
       
-      </div>
     
     
+            </div>      
+
     
     </div>
   </div>
-</div>
+<br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
 
 
 </header>

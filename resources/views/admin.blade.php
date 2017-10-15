@@ -7,22 +7,81 @@
  <header class="masthead">
       <div class="container">
         <div class="intro-text">
-          <div class="intro-lead-in">Inspired from travelling Enthusisats</div>
-          <img class="" src="site-content/img/logo2.png" width="400" height="400" alt="">
-          <div class="intro-heading">Scroll to see what is happening around</div> 
+         
+          <div class="intro-heading">Admin Panel</div> 
           <!-- <a class="btn btn-xl js-scroll-trigger" href="#services">Tell Me More</a> -->
         </div>
       </div>
     </header>
 
 
-
+@if ($email == 'valeednaveed@gmail.com')
  <!-- Portfolio Grid -->
+
+
+                <div class="container"> 
+                    
+                    <br>
+            <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Manage Users</h2>
+                                @if (session('status'))
+                <div class="alert alert-success" style="text-align: center; font-weight: bolder; ">
+                 {{ session('status') }}
+                                    </div>
+                    @endif
+          </div>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Delete</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach($users as $user)
+
+                                <tr>
+                                    <td>{!! $user->email !!}</td>
+                                    <td>{!! $user->id !!} </td>
+                                    <td>{!! $user->name !!}</td>
+                                        @if ($user->email == 'valeednaveed@gmail.com')
+                                    <td> admin </td>
+                                        @else
+                                    <td>
+<!--
+                                            <form method="post">
+                                                <input type="text" id="email" name="email" value="{{$user->email }}" hidden/ >
+-->
+
+<!--                                                <a type="submit" class="btn btn-danger">Delete</button>-->
+                                                <a class="btn btn-danger" href="{{action('MediaController@deleteUser' , $user->email)}}">Delete</a>
+
+<!--                                            </form>-->
+                                    </td>
+
+                                        @endif
+                               
+                                  
+                                </tr>
+                            
+                            @endforeach    
+
+                        </tbody>
+
+                    </table>
+                    </div> 
+
+
+
     <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Portfolio</h2>
+            <h2 class="section-heading">Manage Media</h2>
           </div>
         </div>
         <div class="row">
@@ -49,6 +108,9 @@
                 @endif
               <p class="text-muted">{!! $x->destination !!}</p>
             </div>
+              <br>
+        <a class="btn btn-danger" href="{{action('MediaController@deleteMedia' , $x->id)}}">Delete</a>
+
           </div>
             @endif
 
@@ -71,6 +133,10 @@
                 @endif
               <p class="text-muted">{!! $x->destination !!}</p>
                 </div>
+                    
+                     <br>
+        <a class="btn btn-danger" href="{{action('MediaController@deleteMedia' , $x->id)}}">Delete</a>
+                    
               </div>
             @endif
             
@@ -111,8 +177,6 @@
                   <ul class="list-inline">
                     <li>Date: {!! $y->created_at !!}</li>
                     <li>Destination: {!! $y->destination !!}</li>
-                                          <li>Location: {!! $y->location !!}</li>
-
                       @if ($y->showName == 'true')
                     <li>uploaded by : {!! $y->userName !!}</li>
                       @endif
@@ -190,6 +254,10 @@
                                           {{$comment->comment}}
 
                                           <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+                                            
+                                             
+                                        <a class="btn btn-danger" href="{{action('MediaController@deleteComment' , $comment->id)}}">Delete</a>
+                                            
                                         </div>
                                       </div>
 
@@ -235,8 +303,6 @@
                   <ul class="list-inline">
                     <li>Date: {!! $y->created_at !!}</li>
                     <li>Destination: {!! $y->destination !!}</li>
-                    <li>Location: {!! $y->location !!}</li>
-
                      @if ($y->showName == 'true')
 
                     <li>uploaded by : {!! $y->userName !!}</li>
@@ -317,6 +383,8 @@
                                           {{$comment->comment}}
 
                                           <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+                                           
+                                        <a class="btn btn-danger" href="{{action('MediaController@deleteComment' , $comment->id)}}">Delete</a>
                                         </div>
                                       </div>
 
@@ -346,6 +414,10 @@
         @endif
 @endforeach
 
+
+@else 
+<h1>You dont have admin rights</h1>
+@endif
 
 
 @endsection
