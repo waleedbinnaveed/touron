@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Media;
 use App\comments;
-use App\User; 
+use App\User;
 
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
-    
+
      public function __construct()
     {
          $this->middleware('auth');
@@ -41,66 +41,87 @@ class MediaController extends Controller
     return redirect('/upload')->with('status', 'Your media has been uploaded!');
 
   }
-    
-    
-public function adminPanel() { 
-    $users = User::all(); 
-    $email=Auth::User()->email; 
-        $media = Media::all(); 
-        $comments = comments::all(); 
+
+
+public function adminPanel() {
+    $users = User::all();
+    $email=Auth::User()->email;
+        $media = Media::all();
+        $comments = comments::all();
         return view('admin')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
 }
-    
+
     public function deleteUser($email)
     {
-        
-        $user = User::whereEmail($email)->first() ; 
 
-        $user->delete(); 
-        
+        $user = User::whereEmail($email)->first() ;
 
-        
-        $users = User::all(); 
-        $email=Auth::User()->email; 
-        $media = Media::all(); 
+        $user->delete();
+
+
+
+        $users = User::all();
+        $email=Auth::User()->email;
+        $media = Media::all();
         $comments = comments::all();
-        return view('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+        return redirect('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
 
 
     }
-    
+
        public function deleteMedia($mediaid)
     {
-        
-        $mediaa = Media::whereId($mediaid)->first() ; 
-        $commentss = comments::whereMediaid($mediaid); 
-        $mediaa->delete(); 
-        $commentss->delete(); 
 
-        
-        $users = User::all(); 
-        $email=Auth::User()->email; 
-        $media = Media::all(); 
+        $mediaa = Media::whereId($mediaid)->first() ;
+        $commentss = comments::whereMediaid($mediaid);
+        $mediaa->delete();
+        $commentss->delete();
+
+
+        $users = User::all();
+        $email=Auth::User()->email;
+        $media = Media::all();
         $comments = comments::all();
-        return view('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+        return redirect('/admin')->with('status', 'The Media has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
 
 
     }
-    
+
            public function deleteComment($commentid)
     {
-        
-        $commentss = comments::whereId($commentid)->first() ; 
-        $commentss->delete(); 
 
-        
-        $users = User::all(); 
-        $email=Auth::User()->email; 
-        $media = Media::all(); 
+        $commentss = comments::whereId($commentid)->first() ;
+        $commentss->delete();
+
+
+        $users = User::all();
+        $email=Auth::User()->email;
+        $media = Media::all();
         $comments = comments::all();
-        return view('/admin')->with('status', 'The User has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+        return redirect('/admin')->with('status', 'The comment has been deleted!')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
 
 
     }
-    
+
+    public function showUserProfile()
+    {
+      return view('userProfile');
+    }
+
+      public function updateUser(){
+        //$id= Auth::user() -> id ;
+        Auth::user() -> name = $_POST["name"];
+        Auth::user() -> city = $_POST["city"];
+        Auth::user() -> country = $_POST["country"];
+        Auth::user() -> bio = $_POST["bio"];
+        Auth::user() -> save();
+            // $user = User::whereId($id)->first() ;
+            // $user->name = $_POST["name"];
+            // $user->city = $_POST["city"];
+            // $user->country=$_POST["country"];
+            // $user->bio=$_POST["bio"];
+            // $user->save();
+
+            return view('userProfile');
+   }
 }

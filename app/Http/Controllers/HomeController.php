@@ -26,15 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $media = Media::all(); 
-        $comments = comments::all(); 
+        $media = Media::all();
+        $comments = comments::all();
         return view('welcome')->with('media',$media)->with('comments',$comments);
     }
 
     public function storeComment()
-    { 
-        $media = Media::all();  
-        $comments = comments::all();        
+    {
+        $media = Media::all();
+        $comments = comments::all();
         $newcom = new comments
         (
           array(
@@ -42,12 +42,12 @@ class HomeController extends Controller
              'nameofuser' => $_POST['nameofuser'],
              'userid' => 0,
              'comment' => $_POST['comment'],
-    
+
            )
-    
+
         );
-    
+
         $newcom->save();
-        return view('welcome')->with('status', 'comment posted')->with('media',$media)->with('comments',$comments);
+        return redirect('/')->with('status', 'POST COMMENT')->with('media',$media)->with('comments',$comments);
     }
 }

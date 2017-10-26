@@ -9,7 +9,7 @@
         <div class="intro-text">
           <div class="intro-lead-in">Inspired from travelling Enthusisats</div>
           <img class="" src="site-content/img/logo2.png" width="400" height="400" alt="">
-          <div class="intro-heading">Scroll to see what is happening around</div> 
+          <div class="intro-heading">Scroll to see what is happening around</div>
           <!-- <a class="btn btn-xl js-scroll-trigger" href="#services">Tell Me More</a> -->
         </div>
       </div>
@@ -22,11 +22,11 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Portfolio</h2>
+            <h2 class="section-heading">Media</h2>
           </div>
         </div>
         <div class="row">
-            
+
 @foreach($media as $x)
 
           @if ($x->mediaType == '4')
@@ -65,7 +65,7 @@
                 </a>
                 <div class="portfolio-caption">
                <h3 style="color:gold;">Image</h3>
-                    
+
                 @if($x->showName == 'true')
               <h4>{!! $x->userName !!}</h4>
                 @endif
@@ -73,10 +73,10 @@
                 </div>
               </div>
             @endif
-            
+
 @endforeach
-            
-            
+
+
         </div>
       </div>
 </section>
@@ -103,11 +103,11 @@
                 <div class="modal-body">
                   <!-- Project Details Go Here -->
                   <h2>{!! $y->destination !!}</h2>
-                    
+
                    <video class="img-fluid d-block mx-auto" controls>
                     <source src="{!! $y->mediaURL !!}" >
                    </video>
-                    
+
                   <ul class="list-inline">
                     <li>Date: {!! $y->created_at !!}</li>
                     <li>Destination: {!! $y->destination !!}</li>
@@ -137,11 +137,11 @@
                           <label for="title" class="col-lg-2 control-label">Comment</label>
                           <div class="col-lg-10">
                                <textarea type="text" class="form-control" rows="5" id="comment" name="comment">
-                              </textarea> 
+                              </textarea>
                           </div>
                         </div>
 
-  
+
 
                         <div class="form-group">
                         <label for="title" class="col-lg-2 control-label">Name</label>
@@ -152,7 +152,7 @@
 
                         <input type="text" value="{{ $y->id }}" id="mediaid" name="mediaid" hidden  >
 
-                       
+
 
 
                         <div class="form-group">
@@ -162,18 +162,18 @@
                         </div>
 
                     </fieldset>
-       
-                  
-                  </form> 
-                    
-                    
-                    
+
+
+                  </form>
+
+
+
                   <div class="container">
                         <div class="row">
                             <div class="col-md-8">
                               <div class="page-header">
                                 <h1><small class="pull-right"></small> Comments </h1>
-                              </div> 
+                              </div>
                                <div class="comments-list">
 
                               @foreach($comments as $comment)
@@ -263,14 +263,14 @@
                           <label for="title" class="col-lg-2 control-label">Comment</label>
                           <div class="col-lg-10">
                               <textarea type="text" class="form-control" rows="5" id="comment" name="comment">
-                              </textarea> 
-                              
-                    
-                              
+                              </textarea>
+
+
+
                           </div>
                         </div>
 
-  
+
 
                         <div class="form-group">
                         <label for="title" class="col-lg-2 control-label">Name</label>
@@ -281,7 +281,7 @@
 
                         <input type="text" value="{{ $y->id }}" id="mediaid" name="mediaid" hidden  >
 
-                       
+
 
 
                         <div class="form-group">
@@ -291,16 +291,16 @@
                         </div>
 
                     </fieldset>
-       
-                  
-                  </form> 
+
+
+                  </form>
 
                   <div class="container">
                         <div class="row">
                             <div class="col-md-8">
                               <div class="page-header">
                                 <h1><small class="pull-right"></small> Comments </h1>
-                              </div> 
+                              </div>
                                <div class="comments-list">
 
                               @foreach($comments as $comment)

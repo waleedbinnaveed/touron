@@ -36,6 +36,5 @@ Route::get('/admin', 'MediaController@adminPanel')->name('admin-panel');
 Route::get('/admin/deleteuser{email?}','MediaController@deleteUser');
 Route::get('/admin/deletemedia/{mediaid?}','MediaController@deleteMedia');
 Route::get('/admin/deletecomment/{commentid?}','MediaController@deleteComment');
-
-
-
+Route::get('/userProfile', 'MediaController@showUserProfile')->name('user profile');
+Route::post('/userProfile', 'MediaController@updateUser')->name('user profile');

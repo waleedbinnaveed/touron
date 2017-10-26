@@ -66,7 +66,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}">Portfolio</a>
+              <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}">Media</a>
             </li>
             @guest
             <li class="nav-item">
@@ -82,7 +82,7 @@
               <a class="btn btn-xl" href="{{ route('upload') }}">+</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">{{ Auth::user()->name }}</a>
+              <a class="nav-link" href="{{ url('/userProfile') }}">{{ Auth::user()->name }}</a>
             </li>
 
 

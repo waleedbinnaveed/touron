@@ -7,8 +7,8 @@
  <header class="masthead">
       <div class="container">
         <div class="intro-text">
-         
-          <div class="intro-heading">Admin Panel</div> 
+
+          <div class="intro-heading">Admin Panel</div>
           <!-- <a class="btn btn-xl js-scroll-trigger" href="#services">Tell Me More</a> -->
         </div>
       </div>
@@ -19,8 +19,8 @@
  <!-- Portfolio Grid -->
 
 
-                <div class="container"> 
-                    
+                <div class="container">
+
                     <br>
             <div class="col-lg-12 text-center">
             <h2 class="section-heading">Manage Users</h2>
@@ -30,7 +30,7 @@
                                     </div>
                     @endif
           </div>
-                    
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -64,16 +64,16 @@
                                     </td>
 
                                         @endif
-                               
-                                  
+
+
                                 </tr>
-                            
-                            @endforeach    
+
+                            @endforeach
 
                         </tbody>
 
                     </table>
-                    </div> 
+                    </div>
 
 
 
@@ -85,7 +85,7 @@
           </div>
         </div>
         <div class="row">
-            
+
 @foreach($media as $x)
 
           @if ($x->mediaType == '4')
@@ -127,22 +127,22 @@
                 </a>
                 <div class="portfolio-caption">
                <h3 style="color:gold;">Image</h3>
-                    
+
                 @if($x->showName == 'true')
               <h4>{!! $x->userName !!}</h4>
                 @endif
               <p class="text-muted">{!! $x->destination !!}</p>
                 </div>
-                    
+
                      <br>
         <a class="btn btn-danger" href="{{action('MediaController@deleteMedia' , $x->id)}}">Delete</a>
-                    
+
               </div>
             @endif
-            
+
 @endforeach
-            
-            
+
+
         </div>
       </div>
 </section>
@@ -169,11 +169,11 @@
                 <div class="modal-body">
                   <!-- Project Details Go Here -->
                   <h2>{!! $y->destination !!}</h2>
-                    
+
                    <video class="img-fluid d-block mx-auto" controls>
                     <source src="{!! $y->mediaURL !!}" >
                    </video>
-                    
+
                   <ul class="list-inline">
                     <li>Date: {!! $y->created_at !!}</li>
                     <li>Destination: {!! $y->destination !!}</li>
@@ -201,11 +201,11 @@
                           <label for="title" class="col-lg-2 control-label">Comment</label>
                           <div class="col-lg-10">
                                <textarea type="text" class="form-control" rows="5" id="comment" name="comment">
-                              </textarea> 
+                              </textarea>
                           </div>
                         </div>
 
-  
+
 
                         <div class="form-group">
                         <label for="title" class="col-lg-2 control-label">Name</label>
@@ -216,7 +216,7 @@
 
                         <input type="text" value="{{ $y->id }}" id="mediaid" name="mediaid" hidden  >
 
-                       
+
 
 
                         <div class="form-group">
@@ -226,18 +226,18 @@
                         </div>
 
                     </fieldset>
-       
-                  
-                  </form> 
-                    
-                    
-                    
+
+
+                  </form>
+
+
+
                   <div class="container">
                         <div class="row">
                             <div class="col-md-8">
                               <div class="page-header">
                                 <h1><small class="pull-right"></small> Comments </h1>
-                              </div> 
+                              </div>
                                <div class="comments-list">
 
                               @foreach($comments as $comment)
@@ -254,10 +254,10 @@
                                           {{$comment->comment}}
 
                                           <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
-                                            
-                                             
+
+
                                         <a class="btn btn-danger" href="{{action('MediaController@deleteComment' , $comment->id)}}">Delete</a>
-                                            
+
                                         </div>
                                       </div>
 
@@ -329,14 +329,14 @@
                           <label for="title" class="col-lg-2 control-label">Comment</label>
                           <div class="col-lg-10">
                               <textarea type="text" class="form-control" rows="5" id="comment" name="comment">
-                              </textarea> 
-                              
-                    
-                              
+                              </textarea>
+
+
+
                           </div>
                         </div>
 
-  
+
 
                         <div class="form-group">
                         <label for="title" class="col-lg-2 control-label">Name</label>
@@ -347,7 +347,7 @@
 
                         <input type="text" value="{{ $y->id }}" id="mediaid" name="mediaid" hidden  >
 
-                       
+
 
 
                         <div class="form-group">
@@ -357,16 +357,16 @@
                         </div>
 
                     </fieldset>
-       
-                  
-                  </form> 
+
+
+                  </form>
 
                   <div class="container">
                         <div class="row">
                             <div class="col-md-8">
                               <div class="page-header">
                                 <h1><small class="pull-right"></small> Comments </h1>
-                              </div> 
+                              </div>
                                <div class="comments-list">
 
                               @foreach($comments as $comment)
@@ -383,7 +383,7 @@
                                           {{$comment->comment}}
 
                                           <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
-                                           
+
                                         <a class="btn btn-danger" href="{{action('MediaController@deleteComment' , $comment->id)}}">Delete</a>
                                         </div>
                                       </div>
@@ -415,7 +415,7 @@
 @endforeach
 
 
-@else 
+@else
 <h1>You dont have admin rights</h1>
 @endif
 
