@@ -124,4 +124,34 @@ public function adminPanel() {
 
             return view('userProfile');
    }
+
+
+   public function mymedia()
+   {
+     $users = User::all();
+     $email=Auth::User()->email;
+         $media = Media::all();
+         $comments = comments::all();
+         return view('mymedia')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+
+   }
+
+   public function updatePost()
+   {
+     $users = User::all();
+     $email=Auth::User()->email;
+     $media = Media::all();
+     $comments = comments::all();
+
+     $mediaid = $_POST["mediaid"];
+     $mediaa = Media::whereId($mediaid)->first() ;
+     $mediaa->destination = $_POST["dest"];
+     $mediaa->location = $_POST["loc"];
+     $mediaa->save(); 
+
+
+
+         return redirect('mymedia')->with('media',$media)->with('comments',$comments)->with('email',$email)->with('users',$users);
+
+   }
 }

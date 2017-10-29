@@ -38,3 +38,7 @@ Route::get('/admin/deletemedia/{mediaid?}','MediaController@deleteMedia');
 Route::get('/admin/deletecomment/{commentid?}','MediaController@deleteComment');
 Route::get('/userProfile', 'MediaController@showUserProfile')->name('user profile');
 Route::post('/userProfile', 'MediaController@updateUser')->name('user profile');
+
+
+Route::get('/mymedia', 'MediaController@mymedia')->name('mymedia');
+Route::post('/mymedia', 'MediaController@updatePost')->name('mymedia');

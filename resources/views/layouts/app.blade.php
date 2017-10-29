@@ -82,6 +82,9 @@
               <a class="btn btn-xl" href="{{ route('upload') }}">+</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{ url('/mymedia') }}">My Media</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ url('/userProfile') }}">{{ Auth::user()->name }}</a>
             </li>
 
